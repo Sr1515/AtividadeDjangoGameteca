@@ -1,0 +1,11 @@
+{% extends 'jogos/template.html' %}
+{% load static %}
+{% block conteudo %}
+<form method="post">{% csrf_token %}
+    <center>
+        <br><br>
+        <h3>Tem certeza que deseja deletar "{{ object }}"?</h3><br>
+        <button class="btn btn-success" type="submit">Sim</button>
+    </center>
+</form>
+{% endblock %}

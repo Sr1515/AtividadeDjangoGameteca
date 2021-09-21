@@ -1,0 +1,38 @@
+{% extends 'jogos/template.html' %}
+{% load static %}
+{% block conteudo %}
+<div class="page-header text-center py-3">
+    <h1>{{ object.nome }}</h1>
+</div>
+<div class="row">
+    <div class="col-sm-4">
+
+        <img src="{{ object.capa.url }}" class="card-img-top" alt="...">
+
+    </div>
+    <div class="col-sm-8">
+        <p class="h4"><strong>Data de Lançamento: </strong>{{ object.lancamento }}</p>
+
+        <p class="h4"><strong>Gêneros: </strong>
+            {% for genero in object.generos.all %}
+            {{ genero.nome }},
+            {% endfor %}</p>
+
+        <p class="h4"><strong>Plataformas: </strong>
+            {% for plataforma in object.plataformas.all %}
+            {{ plataforma.titulo }},
+            {% endfor %} </p>
+
+        <p class="h4"><strong>Desenvolvedor: </strong>{{ object.desenvolvedor }}</p>
+
+        <p class="h4"><strong>Usuário: </strong>{{ object.user.username }}</p>
+
+        <p class="h4"><strong>Avaliação: </strong>{{ object.get_avaliacao }}</p><br>
+
+        <p class="h4"><strong>Enredo: </strong>{{ object.enredo }}</p><br>
+
+        <p class="h4"><strong>Crítica: </strong>{{ object.critica }}</p><br>
+
+    </div>
+</div>
+{% endblock %}

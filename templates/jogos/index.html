@@ -1,0 +1,46 @@
+{% extends 'jogos/template.html' %}
+{% load static %}
+{% block conteudo %}
+<div class="page-header text-center py-3">
+    {% if user.is_authenticated %}
+    <h1>Seus Jogos</h1>
+    {% else %}
+    <h1>Bem vindo a Gameteca!!</h1><br>
+    <img src=" {% static 'img/body.png' %}" alt="" width="370" height="330"><br>
+    <h3 width=> Criado por: João Victor, Joseraldo Gomes, Karen Alves e Raonne Gustavo</h3>
+    {% endif %}
+</div>
+<div class="row">
+    {% for jogo in jogos %}
+    <div class="col-sm-4">
+        <div class="card" style="width: 18rem;">
+            <img src="{{ jogo.capa.url }}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <a href="{% url 'detail_jogo' jogo.pk %}" class="text-decoration-none text-reset">
+                    <h5 class="card-title">{{ jogo.nome }}</h5>
+                </a>
+                <p>Desenvolvedor: {{ jogo.desenvolvedor.nome }}</p>
+
+                <td><a href="{% url 'editar_jogo' jogo.pk %}" class="btn btn-primary">Editar</a></td>
+                <td><a href="{% url 'deletar_jogo' jogo.pk %}" class="btn btn-danger">Deletar</a></td>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+<div class="pagination">
+    <span class="step-links">
+        {% if jogos.has_previous %}
+        <a href="?page=#">Anterior</a>
+        {% endif %}
+
+        <span class="current">
+            {{ jogos.number }} {{ jogos.paginator.num_pages }}
+        </span>
+
+        {% if jogos.has_next %}
+        <a href="?page=#">Próxima</a>
+        {% endif %}
+    </span>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'jogos/template.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block conteudo %}
+<div class="row">
+    <div class="col-12">
+        <div align="center">
+            <h2>Editar conta</h2>
+        </div>
+    </div>
+</div>
+
+<form method="post">
+    {{ form|crispy }}
+    {% csrf_token %}
+    <button class="btn btn-primary" type="submit" id="cadastrar-usuario">Salvar Alterações</button>
+</form>
+{% endblock %}
